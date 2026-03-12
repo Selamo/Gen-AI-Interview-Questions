@@ -1,20 +1,157 @@
-SECTION 1 — Foundations of AI & Machine Learning
-Q1. In your own words, explain the difference between Artificial Intelligence, Machine Learning, and Deep Learning.
-Q2. What is the fundamental difference between traditional programming and machine learning?
-Q3. Describe the three main types of machine learning and give one practical use case for each.
-Q4. What is a neural network, and how do the input layer, hidden layers, and output layer each contribute to a prediction?
-Q5. Explain overfitting and underfitting. What strategies can be used to address each?
+1. Hello LLM Endpoint
+Goal: /hello-llm → Generate text with Hugging Face LLM.
+Model: distilgpt2 (~82M params).
+Lesson: Learn how to call an LLM from FastAPI.
+Resource: DistilGPT2
+Interview Questions:
 
-SECTION 2 — Training, Data & Model Mechanics
-Q6. Walk me through what happens during the training process of a machine learning model.
-Q7. What is a loss function, and why is it important during model training?
-Q8. What is the difference between training set, validation set, and test set? Why must each be kept separate?
-Q9. What are hyperparameters? Name three examples and explain how each affects model training.
-Q10. Explain the concept of gradient descent using an everyday analogy.
+What is a language model?
+How does GPT-2 differ from GPT-3/4?
+Why is distilgpt2 considered lightweight?
+What are tokens, and why do they matter in LLMs?
+How do you handle prompt length limits?
+Why expose models through an API instead of CLI?
+What’s the risk of directly exposing LLMs without moderation?
+💡 "The secret of getting ahead is getting started." — Mark Twain
 
-SECTION 3 — Generative AI Core Concepts
-Q11. How does Generative AI differ from traditional discriminative AI? Provide a concrete example of each.
-Q12. What is an LLM (Large Language Model), and what makes a language model "large"?
-Q13. Explain how a Large Language Model generates text. Why does it produce one token at a time?
-Q14. What is the Transformer architecture, and what problem did it solve that earlier models could not?
-Q15. Explain the concept of attention in Transformers. Why is it considered a breakthrough?
+2. Text Summarizer API
+Goal: /summarize → Summarize long text.
+Model: facebook/bart-large-cnn (~400M params).
+Lesson: Learn sequence-to-sequence summarization with Hugging Face pipelines.
+Resource: BART Paper
+Interview Questions:
+
+What is abstractive vs extractive summarization?
+Why is BART good for summarization?
+What are encoder-decoder architectures?
+How does beam search affect summary quality?
+What are hallucinations in summarization?
+What evaluation metrics exist (ROUGE, BLEU)?
+How would you fine-tune BART on legal documents?
+💡 "An investment in knowledge pays the best interest." — Benjamin Franklin
+
+3. Sentiment Analysis API
+Goal: /sentiment → Detect positive/negative sentiment.
+Model: distilbert-base-uncased-finetuned-sst-2-english (~66M params).
+Lesson: Learn text classification with transformers.
+Resource: SST-2 Dataset
+Interview Questions:
+
+What is transfer learning in NLP?
+Why use DistilBERT instead of BERT?
+What dataset is SST-2?
+What are embeddings in classification?
+How do you evaluate classification performance?
+What biases can exist in sentiment models?
+How would you handle sarcasm in sentiment detection?
+💡 "Learning never exhausts the mind." — Leonardo da Vinci
+
+4. Multimodal Image Captioning
+Goal: /caption-image → Upload an image, return caption.
+Model: nlpconnect/vit-gpt2-image-captioning (~124M params).
+Lesson: Learn vision-language alignment.
+Resource: COCO Dataset
+Interview Questions:
+
+How does ViT process images?
+What role does GPT-2 play in captioning?
+Why combine a vision encoder with a language decoder?
+What datasets are used for captioning?
+What challenges exist in image captioning?
+How do you evaluate captions (BLEU, CIDEr)?
+What real-world apps use captioning?
+💡 "The best way to predict the future is to invent it." — Alan Kay
+
+5. Naive RAG with Chroma + LangChain
+Goal: /rag-query → Query docs with retrieval.
+Model: all-MiniLM-L6-v2 (~33M params).
+Lesson: Learn embeddings + retrieval-augmented generation with Chroma + LangChain retriever.
+Resource: Chroma Docs | LangChain RAG
+Interview Questions:
+
+What is RAG and why is it useful?
+How do embeddings represent meaning?
+Why use Chroma as a vector DB?
+What is cosine similarity in retrieval?
+How do you update a knowledge base?
+What is the risk of injecting irrelevant documents?
+How does RAG differ from fine-tuning?
+💡 "It always seems impossible until it’s done." — Nelson Mandela
+
+6. Naive RAG with FAISS + LangChain
+Goal: /rag-faiss-query → Same as above but with FAISS.
+Model: all-MiniLM-L6-v2.
+Lesson: Learn scalable vector search with FAISS + LangChain retriever.
+Resource: FAISS Docs | LangChain VectorStores
+Interview Questions:
+
+What is FAISS, and why is it fast?
+What indexing methods does FAISS provide (IVF, HNSW)?
+How does FAISS handle billions of vectors?
+Compare FAISS vs Chroma.
+What is approximate nearest neighbor (ANN) search?
+How do you evaluate retrieval accuracy?
+How would you deploy FAISS in production?
+💡 "Your time is limited, so don’t waste it living someone else’s life." — Steve Jobs
+
+7. Multimodal Q&A (Image + Text)
+Goal: /qa-image-text → Ask a question about an image.
+Models: blip2-flan-t5-xl (~3B params) or Google Gemini Vision.
+Lesson: Learn multimodal reasoning with LangChain multimodal support.
+Resource: BLIP-2 Paper
+Interview Questions:
+
+What is visual question answering (VQA)?
+How does BLIP-2 align vision + text?
+What is the role of a frozen LLM in multimodal models?
+What tasks benefit from multimodal inputs?
+What challenges exist in multimodal learning?
+How do you evaluate multimodal models?
+What industries need multimodal AI?
+💡 "Tell me and I forget. Teach me and I remember. Involve me and I learn." — Benjamin Franklin
+
+8. Chain Multiple Tools with LangChain
+Goal: /researcher → Wikipedia fetch + summarization + sentiment.
+Lesson: Learn chaining AI tasks with LangChain SequentialChain.
+Resource: Wikipedia API | LangChain Chains
+Interview Questions:
+
+What is tool chaining in AI?
+Why combine multiple AI tools?
+What challenges exist when chaining APIs?
+How does orchestration differ from composition?
+How to handle failures in one tool?
+What is LangChain and why is it popular?
+How would you monitor toolchain latency?
+💡 "Creativity is intelligence having fun." — Albert Einstein
+
+9. Intelligent Chat Endpoint with LangChain Routing
+Goal: /chat → Smart routing for queries (LLM, RAG, image).
+Lesson: Learn adaptive decision-making in AI apps with LangChain RouterChain.
+Resource: LLM Routing (LangChain)
+Interview Questions:
+
+What is model routing?
+How do you detect intent in queries?
+How do you decide when to call RAG vs LLM?
+What are risks of automatic routing?
+How do you log and trace routed calls?
+What metrics help evaluate a chat system?
+How would you scale this system for enterprise use?
+💡 "The best way to learn is by doing. The only way to build a strong future is to start building today." — Unknown
+
+10. Diffusion Model – Image Generation
+Goal: /generate-image → Generate images from text prompts.
+Model: stable-diffusion-v1-5 (~860M params).
+Lesson: Learn how diffusion models synthesize images (with Hugging Face Diffusers).
+Resource: Stable Diffusion
+Interview Questions:
+
+How do diffusion models generate images?
+What is denoising in diffusion?
+How does Stable Diffusion differ from DALL·E?
+Why are diffusion models memory-intensive?
+What ethical issues exist with generative images?
+How do you optimize diffusion for faster inference?
+What industries benefit from diffusion models?
+💡 "The best way to predict the future is to create it." — Peter Drucker
