@@ -1,0 +1,262 @@
+I.
+
+1. What is a Language Model?
+
+A Language Model is like a super-powered "autocomplete." It is a mathematical system trained on billions of sentences to predict what word comes next.
+
+Simple Example: If you type "The cat sat on the...", the model calculates that "mat" is more likely than "refrigerator."
+
+2. How does GPT-2 differ from GPT-3/4?
+
+The main difference is size and "brain power."
+
+GPT-2: Small and fast, but it often forgets what it was talking about in long stories.
+GPT-3: Much bigger. It can write code, solve math, and follow specific instructions much better.
+GPT-4: The smartest version. It can "see" images, reason through very difficult problems, and makes far fewer mistakes.
+
+3. Why is 'distilgpt2' considered "lightweight"?
+
+Imagine taking a massive 500-page textbook (GPT-2) and condensing it into a 50-page "cheat sheet."
+
+'distilgpt2' uses a process called Distillation to keep the most important knowledge while removing the extra "weight." This makes it run much faster on phones or laptops.
+
+4. What are tokens, and why do they matter?
+
+AI doesn't see words like "Apple"; it sees numbers. Tokens are the small chunks of characters the AI uses to read.
+
+Why they matter: 
+1. Memory: AI has a limit on how many tokens it can remember at once (like a short-term memory limit).
+2. Cost: Most AI companies charge you based on how many tokens you use.
+
+5. How do you handle prompt length limits?
+
+If your text is too long for the AI to remember, you can:
+
+Summarize: Shorten the previous parts of the chat.
+Trim: Delete the oldest messages to make room for new ones.
+Search (RAG): Only give the AI the specific paragraphs it needs to answer the question, rather than the whole book.
+
+6. Why use an API instead of a CLI?
+
+CLI (Command Line): Good for one person working on their own computer.
+API: Allows thousands of people to use the same AI model at once through websites or mobile apps. It keeps the heavy AI "brain" on a powerful server while the user stays on their simple device.
+
+7. Risks of exposing LLMs without moderation?
+
+Exposing a "raw" AI is like letting a toddler talk to the public without supervision:
+
+Bias/Hate: It might say something offensive it learned from the internet.
+Hallucination: It might confidently give a wrong medical or legal answer.
+Jailbreaking: Users might trick it into doing something dangerous (like teaching them how to hack).
+
+
+II.
+
+1. What is Abstractive vs Extractive Summarization?
+
+There are two main ways an AI can shorten a text:
+Extractive Summarization: This is like using a highlighter. The AI picks out the most important existing sentences from the original text and sticks them together. It doesn't create new words.
+Abstractive Summarization: This is like a human writing a summary in their own words. The AI understands the meaning of the text and generates entirely new sentences to explain the main points.
+
+
+2. Why is BART good for Summarization?
+
+BART (Bidirectional and Auto-Regressive Transformers) is special because it is trained by "breaking" text and then learning how to "fix" it.
+It is good because it combines two strengths: it is great at understanding the input text (like a reader) and great at generating smooth, natural sentences (like a writer). This makes it perfect for creating high-quality abstractive summaries.
+
+
+3. What are Encoder-Decoder Architectures?
+
+This is a two-part system used by models like BART:
+The Encoder: This part acts like a "reader." It looks at the input text and converts the information into a mathematical map that the computer understands.
+The Decoder: This part acts like a "writer." It takes that mathematical map and uses it to generate the output text, word by word.
+
+
+4. How does Beam Search affect summary quality?
+
+When an AI predicts the next word, it has many choices.
+Greedy Search: The AI just picks the single most likely next word. This is fast but often leads to repetitive or boring summaries.
+Beam Search: The AI looks at several possible sequences of words at the same time (the "beams"). It picks the path that makes the most sense for the whole sentence, not just the next word. This usually makes the summary much more accurate and readable.
+
+
+5. What are Hallucinations in Summarization?
+
+A hallucination happens when the AI includes information in the summary that was not in the original text.
+Example: If the text says "The company lost 5 million dollars," and the AI summary says "The company went bankrupt," that is a hallucination. It is "making things up" based on what it thinks might happen, rather than sticking to the facts provided.
+
+
+6. What Evaluation Metrics exist (ROUGE, BLEU)?
+
+Since we can't always have a human grade every summary, we use math:
+ROUGE: This is the main metric for summarization. It counts how many words in the AI's summary match the words in a human-written reference summary.
+BLEU: This is mostly used for translation. It checks how similar the AI's output is to a target translation.
+Both metrics help us give the AI a "score" to see if it is improving.
+
+
+7. How would you fine-tune BART on Legal Documents?
+
+Fine-tuning means taking a smart model and giving it "extra training" for a specific job. To do this for legal work:
+
+1. Data Collection: Gather thousands of legal documents and their matching summaries.
+2. Training: Show BART the legal text and tell it to practice summarizing them.
+3. Domain Adaptation: Because legal language (legalese) is very specific, this extra training helps BART learn the specialized vocabulary and formal tone used by lawyers.
+
+III.
+
+1. What is Transfer Learning in NLP?
+
+Transfer learning is like a student who learns general English in school and then uses that knowledge to understand a specific medical textbook.
+In AI, we first train a model on a massive amount of general text (like all of Wikipedia). Then, we take that smart model and give it a small amount of specific training for a new task, like sorting emails. This saves time and requires much less data than starting from zero.
+
+
+2. Why use DistilBERT instead of BERT?
+
+BERT is a very powerful but very large and heavy model. It can be slow and expensive to run.
+DistilBERT is a smaller, faster version of BERT. It is about 40 percent smaller and 60 percent faster while keeping about 97 percent of BERT's performance. It is the better choice when you need your app to be quick or when you are running it on a device with limited memory, like a smartphone.
+
+
+3. What dataset is SST-2?
+
+SST-2 stands for the Stanford Sentiment Treebank. It is a famous collection of movie reviews that are labeled as either positive or negative.
+Data scientists use this dataset as a standard test to see how well their AI models can determine the "feeling" or sentiment behind a sentence.
+
+
+4. What are Embeddings in Classification?
+
+Computers cannot understand words, but they are great at math. Embeddings are a way of turning words into a list of numbers (a vector).
+Words with similar meanings are placed close together in this mathematical space. For example, the numbers for "happy" and "joyful" will look very similar to the computer, which helps it classify both of them as positive sentiment.
+
+
+5. How do you evaluate Classification Performance?
+
+We use a few different math scores to see if the AI is doing a good job:
+Accuracy: The percentage of total guesses the AI got right.
+Precision: Out of all the times the AI said a review was positive, how many actually were?
+Recall: Out of all the positive reviews that existed, how many did the AI successfully find?
+F1 Score: A single number that balances both Precision and Recall to give a fair overall grade.
+
+
+6. What Biases can exist in Sentiment Models?
+
+AI models learn from the internet, which unfortunately contains human prejudices.
+A sentiment model might incorrectly label sentences as negative just because they mention certain religions, races, or countries. It might also struggle with gender bias, associating specific jobs or traits with one gender more than another. Developers have to work hard to find and remove these unfair patterns.
+
+
+7. How would you handle Sarcasm in Sentiment Detection?
+
+Sarcasm is very hard for AI because the words look positive, but the meaning is negative. For example: "Oh great, another flat tire."
+To handle this, we can:
+
+1. Context: Give the AI the sentences that came before or after to see the whole story.
+2. Training: Specifically show the AI thousands of examples of sarcastic sentences so it learns the patterns.
+3. Punctuation and Emojis: Teach the AI to look for clues like exclamation marks or specific emojis that often signal sarcasm.
+
+IV.
+
+1. How does ViT process images?
+
+A Vision Transformer (ViT) treats an image like a book.
+First, it cuts the image into small square patches (like words in a sentence).
+Then, it turns each patch into a list of numbers (an embedding).
+Finally, it uses the Transformer "Attention" mechanism to see how each patch relates to the others to understand the whole picture.
+
+
+2. What role does GPT-2 play in captioning?
+
+In an image captioning system, GPT-2 acts as the professional storyteller.
+While another part of the AI "sees" the objects, GPT-2 takes that visual information and turns it into a smooth, grammatically correct sentence. It is the brain that decides which words to use and in what order.
+
+
+3. Why combine a Vision Encoder with a Language Decoder?
+
+This is the ultimate teamwork:
+The Vision Encoder (like ViT) is the **eyes**; it looks at the image and extracts the important features (colors, shapes, objects).
+The Language Decoder (like GPT-2) is the **voice**; it takes those features and translates them into human language.
+Combining them allows the AI to both understand pixels and speak words at the same time.
+
+
+4. What datasets are used for captioning?
+
+To learn how to describe things, AI is trained on massive collections of images paired with human-written descriptions. The most popular ones are:
+MS COCO: The "gold standard" with over 330,000 images and 5 captions each.
+Flickr30k: A collection of 30,000 images showing everyday life and people.
+Conceptual Captions: A much larger set (millions) of images scraped from the web with their alt-text.
+
+
+5. What challenges exist in image captioning?
+
+Describing a photo is harder than it looks:
+Object Relationships: The AI might see a "man" and a "bike" but fail to realize the man is "repairing" the bike, not "riding" it.
+Hallucinations: The AI might "see" something that isn't there (like saying there is a dog in a park just because it usually sees dogs in parks).
+Complexity: Busy scenes with many overlapping objects are very confusing for the AI to summarize accurately.
+
+
+6. How do you evaluate captions (BLEU, CIDEr)?
+
+We use mathematical scores to see how close the AI's caption is to a human's:
+BLEU: Checks for matching words between the AI and the human. It is simple but sometimes misses the overall meaning.
+CIDEr: A more advanced score specifically for images. It gives more points for matching the "important" words and less for common words like "the" or "a."
+
+
+7. What real-world apps use captioning?
+
+Accessibility: Apps like Seeing AI that describe the world out loud for people who are blind or have low vision.
+Social Media: Automatically generating "Alt-Text" for images so they can be found in searches.
+Self-Driving Cars: Helping the car's computer "describe" the road situation to make better decisions.
+Digital Libraries: Automatically tagging thousands of photos in your phone's gallery so you can search for "birthday cake."
+
+
+V.
+
+1. What is RAG and why is it useful?
+
+RAG stands for Retrieval-Augmented Generation. It is like giving an AI an open-book exam.
+Normally, an AI only knows what it learned during training. With RAG, the AI first looks up relevant information in a private library (the Retrieval part) and then uses that information to write an answer (the Generation part).
+It is useful because it allows the AI to talk about new information or private company data without needing to be retrained.
+
+
+2. How do Embeddings represent meaning?
+
+Embeddings turn words and sentences into a list of numbers that represent their "flavor" or meaning.
+Instead of looking at the spelling of a word, the AI looks at where these numbers sit in a giant mathematical space.
+Example: The numbers for "King" and "Queen" will be very close to each other, but very far from the numbers for "Toaster." This helps the AI understand that a King and a Queen are related concepts.
+
+
+3. Why use Chroma as a Vector DB?
+
+A Vector Database like Chroma is a specialized "filing cabinet" for those lists of numbers (embeddings).
+We use Chroma because it is very fast at searching through millions of items to find the ones that are most similar to a user's question. It is also very popular with beginners because it is easy to set up and works directly inside your Python code.
+
+
+4. What is Cosine Similarity in retrieval?
+
+Cosine Similarity is the "ruler" we use to measure how similar two pieces of text are.
+Think of each piece of text as an arrow pointing in a certain direction. If two arrows point in almost the same direction, the angle between them is small, and the cosine similarity is high. This tells the AI that the two pieces of text have a very similar meaning.
+
+
+5. How do you update a Knowledge Base?
+
+Updating a knowledge base in RAG is much easier than retraining an AI. You simply:
+
+1. Take your new document (like a new company policy).
+2. Break it into small chunks.
+3. Turn those chunks into embeddings (numbers).
+4. Add those new numbers to your Vector Database (like Chroma).
+The AI can now "see" and use that new information immediately.
+
+
+6. What is the risk of injecting irrelevant documents?
+
+If you give the AI the wrong "books" to look at during its open-book exam, two bad things happen:
+
+1. Confusion: The AI might get distracted by the wrong info and give a messy or incorrect answer.
+2. Hallucination: The AI might try to force the irrelevant information into the answer, making it sound confident but being completely wrong.
+Quality of data is more important than quantity in RAG.
+
+
+7. How does RAG differ from Fine-Tuning?
+
+RAG and Fine-Tuning are two ways to make an AI smarter, but they work differently:
+Fine-Tuning: This is like putting the AI through a long specialized school to learn a new skill or tone. It "absorbs" the knowledge into its own brain, but it is hard to update once the school is over.
+RAG: This is like giving the AI a library card. The AI doesn't "memorize" the facts, it just knows how to look them up when it needs them. It is much faster and cheaper to update.
+
