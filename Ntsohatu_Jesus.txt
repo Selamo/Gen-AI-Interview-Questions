@@ -1,0 +1,247 @@
+# ANWSERS TO THE GEN-AI INTERVIEW QUESTIONS
+
+1. Hello LLM Endpoint
+What is a language model?
+A language model is an AI system trained to understand and generate human language.
+It predicts the next word in a sequence based on patterns learned from large text datasets.
+
+How does GPT-2 differ from GPT-3/4?
+GPT-2 is smaller and less powerful.
+GPT-3 and GPT-4 have many more parameters and are trained on larger datasets, which makes them better at reasoning, conversation, and complex tasks.
+
+Why is distilgpt2 considered lightweight?
+DistilGPT2 is a compressed version of GPT-2.
+It has fewer parameters and uses less memory and computing power, making it faster to run.
+
+What are tokens?
+Tokens are small pieces of text such as words or parts of words.
+Language models process text as tokens instead of full sentences.
+
+Why do tokens matter?
+Tokens determine how much text a model can process.
+Models have token limits, so long prompts must fit within that limit.
+
+How do you handle prompt length limits?
+You can; shorten the prompt,split text into smaller parts,summarize long content before sending it to the model,so all information can fit into its context window
+
+Why expose models through an API instead of CLI?
+APIs allow other applications like websites or mobile apps to access the model easily over the internet.
+
+What’s the risk of exposing LLMs without moderation?
+Users may generate harmful, offensive, or unsafe content.
+Moderation systems are needed to filter outputs.
+
+2. Text Summarizer API
+What is abstractive summarization?
+Abstractive summarization generates new sentences that capture the meaning of the text.
+
+What is extractive summarization?
+Extractive summarization selects important sentences directly from the original text.
+
+Why is BART good for summarization?
+BART is designed as an encoder-decoder transformer that understands and rewrites text effectively.
+
+What are encoder-decoder architectures?
+The encoder reads and understands the input text.
+The decoder generates the output text based on that understanding.
+
+How does beam search affect summary quality?
+Beam search explores multiple possible outputs and chooses the best one, improving summary quality.
+
+What are hallucinations?
+Hallucinations occur when the model generates information that is incorrect or not present in the input. Posiblly due to the fact that teh data used t train it is not up to date.
+
+Evaluation metrics
+Common metrics include:
+ROUGE – compares overlap with reference summaries
+BLEU – measures similarity between generated and reference text
+
+Fine-tuning BART on legal documents
+You would train BART on a dataset of legal texts and their summaries to adapt the model to legal language.
+
+3. Sentiment Analysis API
+What is transfer learning?
+Transfer learning means using a pre-trained model and adapting it to a new task with additional training.
+
+Why use DistilBERT?
+DistilBERT is faster and smaller than BERT but still maintains good accuracy.
+
+What is the SST-2 dataset?
+SST-2 (Stanford Sentiment Treebank) is a dataset used for training models to classify sentences as positive or negative.
+
+What are embeddings?
+Embeddings are numerical representations of text that capture meaning and relationships between words.
+
+How to evaluate classification performance?
+Common metrics include:
+Accuracy,Precision,Recall,F1 score,
+
+What biases exist in sentiment models?
+Models may reflect biases from training data, such as cultural or language biases.
+
+Handling sarcasm
+Sarcasm is difficult for models.
+Improving it requires larger datasets and contextual understanding.
+
+4. Image Captioning
+How does ViT process images?
+Vision Transformer divides an image into small patches and processes them like tokens in a transformer.
+
+Role of GPT-2
+GPT-2 generates natural language captions based on visual features from the image encoder.
+
+Why combine vision encoder and language decoder?
+The encoder understands the image while the decoder generates descriptive text.
+
+Captioning datasets
+Common datasets include: COCO and Flickr30k
+
+Captioning challenges
+Challenges include:understanding complex scenes,recognizing objects and generating accurate descriptions.
+
+Caption evaluation
+Metrics used include: BLEU, CIDEr and METEOR
+
+Real-world applications
+Accessibility tools for visually impaired people
+Image search systems
+Social media tagging
+
+5. RAG with Chroma
+What is RAG?
+Retrieval-Augmented Generation combines document retrieval with language generation. Used to  get information and search from external sources
+
+How embeddings represent meaning?
+Embeddings convert text into vectors that capture semantic meaning.
+
+Why use Chroma?
+Chroma is a vector database designed for storing and searching embeddings efficiently.
+
+Cosine similarity
+Cosine similarity measures how similar two vectors are.
+
+Updating knowledge base
+Add new documents, generate embeddings, and store them in the vector database.
+
+Risk of irrelevant documents
+Irrelevant retrieval can cause incorrect answers.
+
+RAG vs fine-tuning
+RAG retrieves external information, while fine-tuning modifies the model weights(internal data and information modified ).
+
+6. RAG with FAISS
+What is FAISS?
+FAISS is a library from Meta for fast similarity search of vectors.
+
+FAISS indexing methods include: IVF – clusters vectors, and HNSW – graph-based search
+
+Handling billions of vectors
+FAISS uses optimized indexing and compression techniques.
+
+FAISS vs Chroma
+FAISS is a vector search engine.
+Chroma is a vector database with additional features.
+
+ANN search
+Approximate Nearest Neighbor finds similar vectors quickly without checking all vectors.
+
+Retrieval evaluation
+Precision and recall are commonly used.
+
+Deploying FAISS
+Use FAISS on servers with APIs for scalable search.
+
+7. Multimodal Q&A
+What is VQA?
+Visual Question Answering allows models to answer questions based on images.
+
+BLIP-2 alignment
+BLIP-2 connects visual features from images with language models.
+
+Frozen LLM role
+A frozen LLM keeps its weights fixed while other components learn to connect to it.
+
+Multimodal tasks
+Examples include:
+-Image captioning
+-Visual search
+-Medical imaging analysis
+
+Challenges
+Large compute requirements and complex training data.
+
+Evaluation
+Accuracy and human evaluation.
+
+Industries
+-Healthcare
+-Autonomous vehicles
+-E-commerce
+
+8. Tool Chaining
+Tool chaining
+Connecting multiple AI tools so the output of one becomes the input of another.
+
+Why combine tools
+Complex tasks require multiple capabilities.
+
+Challenges
+Latency and error propagation.
+
+Orchestration vs composition
+Orchestration controls task flow.
+Composition combines functions together.
+
+Handling failures
+Use error handling and fallback systems.
+
+What is LangChain?
+LangChain is a framework for building applications with LLMs.
+
+Monitoring latency
+Use logging and performance monitoring tools.
+
+9. Intelligent Chat Routing
+Model routing
+Selecting the best model or tool based on the user query.
+
+Detect intent
+Use classification models or rules to understand user queries.
+
+When to use RAG vs LLM
+Use RAG when external knowledge is needed.
+
+Risks of routing
+Wrong routing can produce poor answers.
+
+Logging
+Track queries and responses for debugging.
+
+Chat evaluation metrics
+-Accuracy
+-Latency
+-User satisfaction
+
+Enterprise scaling
+Use load balancing, caching, and distributed systems.
+
+10. Diffusion Models
+How diffusion generates images
+It starts with random noise and gradually removes noise to create an image.
+
+Denoising
+The model learns how to convert noisy images into clear images.
+
+Stable Diffusion vs DALL·E
+Stable Diffusion can run locally and is open-source, while DALL·E is proprietary.
+
+Memory intensive
+Image generation requires large models and GPUs.
+
+Ethical issues
+Deepfakes, copyright concerns, and misuse.
+
+Faster inference
+Use optimized hardware and model compression.
+
+Industries: Gaming,Advertising,Design and film production
